@@ -1,20 +1,20 @@
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER Martijn Pepping <martijn.pepping@automiq.nl>
 
 RUN addgroup cyberchef -S && \
     adduser cyberchef -G cyberchef -S && \
     apk update && \
-    apk add git nodejs && \
+    apk add nodejs curl && \
     npm install -g grunt-cli && \
     npm install -g http-server
 
 RUN cd /srv && \
-    git clone https://github.com/gchq/CyberChef.git && \
-    cd CyberChef && \
+    curl -L https://github.com/gchq/CyberChef/archive/v5.0.1.tar.gz | tar zxv && \
+    cd  CyberChef-5.0.1 && \
     npm install && \
-    chown -R cyberchef:cyberchef /srv/CyberChef && \
+    chown -R cyberchef:cyberchef /srv/CyberChef-5.0.1 && \
     grunt prod
 
-WORKDIR /srv/CyberChef/build/prod
+WORKDIR /srv/CyberChef-5.0.1/build/prod
 USER cyberchef
 ENTRYPOINT ["http-server", "-p", "8000"]
