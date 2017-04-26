@@ -4,17 +4,17 @@ MAINTAINER Martijn Pepping <martijn.pepping@automiq.nl>
 RUN addgroup cyberchef -S && \
     adduser cyberchef -G cyberchef -S && \
     apk update && \
-    apk add nodejs curl && \
+    apk add nodejs curl git && \
     npm install -g grunt-cli && \
     npm install -g http-server
 
 RUN cd /srv && \
-    curl -L https://github.com/gchq/CyberChef/archive/v5.0.1.tar.gz | tar zxv && \
-    cd  CyberChef-5.0.1 && \
+    curl -L https://github.com/gchq/CyberChef/archive/v5.2.2.tar.gz | tar zxv && \
+    cd  CyberChef-5.2.2 && \
     npm install && \
-    chown -R cyberchef:cyberchef /srv/CyberChef-5.0.1 && \
+    chown -R cyberchef:cyberchef /srv/CyberChef-5.2.2 && \
     grunt prod
 
-WORKDIR /srv/CyberChef-5.0.1/build/prod
+WORKDIR /srv/CyberChef-5.2.2/build/prod
 USER cyberchef
 ENTRYPOINT ["http-server", "-p", "8000"]
