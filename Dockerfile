@@ -9,7 +9,7 @@ RUN addgroup cyberchef -S && \
     npm install -g http-server
 
 RUN cd /srv && \
-    curl -L https://github.com/gchq/CyberChef/archive/v5.7.1.tar.gz | tar zxv && \
+    curl -L https://github.com/gchq/CyberChef/archive/v5.7.2.tar.gz | tar zxv && \
     cd  CyberChef-5.7.1 && \
     npm install && \
     chown -R cyberchef:cyberchef /srv/CyberChef-5.7.1 && \
