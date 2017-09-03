@@ -1,5 +1,5 @@
 FROM alpine:3.5
-LABEL 'maintainer Martijn Pepping <martijn.pepping@automiq.nl>'
+MAINTAINER Martijn Pepping <martijn.pepping@automiq.nl>
 
 RUN addgroup cyberchef -S && \
     adduser cyberchef -G cyberchef -S && \
