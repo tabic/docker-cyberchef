@@ -1,5 +1,5 @@
 FROM alpine:3.5
-MAINTAINER Martijn Pepping <martijn.pepping@automiq.nl>
+LABEL maintainer 'Martijn Pepping <martijn.pepping@automiq.nl>'
 
 RUN addgroup cyberchef -S && \
     adduser cyberchef -G cyberchef -S && \
@@ -10,15 +10,14 @@ RUN addgroup cyberchef -S && \
     npm install -g http-server
 
 RUN cd /srv && \
-    curl -L https://github.com/gchq/CyberChef/archive/v5.17.0.tar.gz | tar zxv && \
-    cd  CyberChef-5.17.0 && \
+    curl -L https://github.com/gchq/CyberChef/archive/v6.2.1.tar.gz | tar zxv && \
+    cd  CyberChef-6.2.1 && \
     rm -rf .git && \
     npm install && \
     npm cache rm && \
-    chown -R cyberchef:cyberchef /srv/CyberChef-5.17.0 && \
+    chown -R cyberchef:cyberchef /srv/CyberChef-6.2.1 && \
     grunt prod
 
-WORKDIR /srv/CyberChef-5.17.0/build/prod
+WORKDIR /srv/CyberChef-6.2.1/build/prod
 USER cyberchef
 ENTRYPOINT ["http-server", "-p", "8000"]
-
