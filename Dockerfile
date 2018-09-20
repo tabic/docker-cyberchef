@@ -14,7 +14,7 @@ RUN cd /srv && \
     cd  CyberChef-8.7.0 && \
     rm -rf .git && \
     npm install && \
-    chown -R cyberchef:cyberchef /srv/CyberChef-8.7.0 && \
+    chown -R cyberchef:cyberchef /srv/CyberChef-8.7.0
 
 USER cyberchef
     
@@ -23,5 +23,4 @@ RUN cd /srv/CyberChef-8.7.0 && \
     grunt prod
 
 WORKDIR /srv/CyberChef-8.7.0/build/prod
-USER cyberchef
 ENTRYPOINT ["http-server", "-p", "8000"]
