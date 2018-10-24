@@ -10,17 +10,17 @@ RUN addgroup cyberchef -S && \
     npm install -g http-server
 
 RUN cd /srv && \
-    curl -L https://github.com/gchq/CyberChef/archive/v8.7.0.tar.gz | tar zxv && \
-    cd  CyberChef-8.7.0 && \
+    curl -L https://github.com/gchq/CyberChef/archive/v8.8.5.tar.gz | tar zxv && \
+    cd  CyberChef-8.8.5 && \
     rm -rf .git && \
     npm install && \
-    chown -R cyberchef:cyberchef /srv/CyberChef-8.7.0
+    chown -R cyberchef:cyberchef /srv/CyberChef-8.8.5
 
 USER cyberchef
     
-RUN cd /srv/CyberChef-8.7.0 && \
+RUN cd /srv/CyberChef-8.8.5 && \
     npm run postinstall && \
     grunt prod
 
-WORKDIR /srv/CyberChef-8.7.0/build/prod
+WORKDIR /srv/CyberChef-8.8.5/build/prod
 ENTRYPOINT ["http-server", "-p", "8000"]
